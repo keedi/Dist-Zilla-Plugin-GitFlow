@@ -1,6 +1,7 @@
 Release history for Dist-Zilla-Plugin-GitFlow
 
-
-
-    First version, released on unsuspecting world.
+{{ $NEXT }}
+    - original release
+    - git-flow init plugin for dzil new
+    - calculate next version
 
