@@ -20,6 +20,8 @@ following plugins are provided in this distribution:
 
 =item * L<Dist::Zilla::Plugin::GitFlow::NextVersion>
 
+=back
+
 =head1 SEE ALSO
 
 I stolen almost code from L<Dist::Zilla::Plugin::Git>.
