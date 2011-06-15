@@ -1,6 +1,9 @@
 Release history for Dist-Zilla-Plugin-GitFlow
 
 {{ $NEXT }}
+    - Fix document typo
+
+0.001     2011-06-15 23:16:37 Asia/Seoul
     - original release
     - git-flow init plugin for dzil new
     - calculate next version
