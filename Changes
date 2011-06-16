@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Plugin-GitFlow
 
 {{ $NEXT }}
+
+0.004     2011-06-16 15:12:58 Asia/Seoul
     - add plugin bundle to support one-line configuration
     - update document
 
