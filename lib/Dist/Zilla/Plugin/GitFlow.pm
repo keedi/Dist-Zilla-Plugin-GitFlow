@@ -8,6 +8,12 @@ use warnings;
 use Dist::Zilla 2.100880;    # Need mvp_multivalue_args in Plugin role
 1;
 
+=head1 SYNOPSIS
+
+In your F<dist.ini>:
+
+[@GitFlow]
+
 =head1 DESCRIPTION
 
 This set of plugins for L<Dist::Zilla> can do interesting things for
@@ -20,12 +26,36 @@ following plugins are provided in this distribution:
 
 =item * L<Dist::Zilla::Plugin::GitFlow::NextVersion>
 
+=item * L<Dist::Zilla::Plugin::GitFlow::NextRelease>
+
 =back
+
+It also provice plugin bundle:
+
+=over 4
+
+=item * L<Dist::Zilla::PluginBundle::GitFlow>
+
+=back
+
+This plugin use it's own next version and next release module,
+so do not use original L<Dist::Zilla::Plugin::NextRelease>
+and L<Dist::Zilla::Plugin::NextVersion> plugins.
 
 =head1 SEE ALSO
 
 I stolen almost code from L<Dist::Zilla::Plugin::Git>.
 Please check original code.
+
+=over 4
+
+=item * L<Dist::Zilla::Plugin::Git>
+
+=item * L<Dist::Zilla::Plugin::NextVersion>
+
+=item * L<Dist::Zilla::Plugin::NextRelease>
+
+=back
 
 You can look for information on this module at:
 
