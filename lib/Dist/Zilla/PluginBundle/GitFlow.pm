@@ -52,7 +52,8 @@ no Moose;
 __END__
 
 =for Pod::Coverage
-    configure
+    mvp_multivalue_args
+    bundle_config
 
 =head1 SYNOPSIS
 
