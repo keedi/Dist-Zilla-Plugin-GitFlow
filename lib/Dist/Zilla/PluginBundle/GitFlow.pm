@@ -1,26 +1,49 @@
 package Dist::Zilla::PluginBundle::GitFlow;
 # ABSTRACT: all git-flow plugins in one go
 
+use 5.010;
 use Moose;
 use Class::MOP;
 
-with 'Dist::Zilla::Role::PluginBundle::Easy';
+with 'Dist::Zilla::Role::PluginBundle';
 
-sub configure {
-    my ($self) = @_;
+my @bundled_plugins = qw/
+    GitFlow::NextVersion
+    GitFlow::NextRelease
+    Git::Check
+    Git::Commit
+/;
 
-    $self->add_plugins(
-        qw(
-            GitFlow::NextVersion
-            GitFlow::NextRelease
-            Git::Check
-        ),
-        [
-            'Git::Commit' => {
-                'commit_msg' => 'Bump up to v%v',
-            },
-        ],
-    );
+my %multi;
+for my $name (@bundled_plugins) {
+    my $class = "Dist::Zilla::Plugin::$name";
+    Class::MOP::load_class($class);
+    @multi{ $class->mvp_multivalue_args } = ();
+}
+
+sub mvp_multivalue_args { keys %multi; }
+
+sub bundle_config {
+    my ($self, $section) = @_;
+    my $arg   = $section->{payload};
+
+    my @config;
+
+    for my $name (@bundled_plugins) {
+        my $class = "Dist::Zilla::Plugin::$name";
+        my %payload;
+        given ($name) {
+            when ('Git::Commit') {
+                $payload{'commit_msg'} = 'Bump up to v%v%n%n%c';
+            }
+        }
+        foreach my $k (keys %$arg) {
+            $payload{$k} = $arg->{$k} if $class->can($k);
+        }
+        push @config, [ "$section->{name}/$name" => $class => \%payload ];
+    }
+
+    return @config;
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -37,6 +60,11 @@ In your F<dist.ini>:
 
     [@GitFlow]
 
+If you want to change C<first_version>:
+
+    [@GitFlow]
+    first_version = 0.0.1
+
 =head1 DESCRIPTION
 
 This is a plugin bundle to load git-flow and git plugins.
@@ -46,7 +74,7 @@ It is equivalent to:
     [GitFlow::NextRelease]
     [Git::Check]
     [Git::Commit]
-    commit_msg = Bump up to v%v ; default
+    commit_msg = Bump up to v%v%n%n%c ; default
 
 It uses L<Dist::Zilla::Plugin::GitFlow::NextRelease>
 and L<Dist::Zilla::Plugin::GitFlow::NexvVersion>

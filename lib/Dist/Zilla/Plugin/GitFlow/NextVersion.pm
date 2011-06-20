@@ -93,24 +93,6 @@ In your F<dist.ini>:
     first_version = 0.001    ; this is the default
     version_regexp = ^v(.+)$ ; this is the default
 
-When you want to release the module on the develop branch:
-
-    $ git flow release start 0.003
-    #
-    # edit and commit
-    #
-    $ git flow release finish 0.003
-
-After finishing release, then upload your released module:
-
-    $ git checkout v0.003
-    $ dzil release # this will be done with Dist::Zilla::Plugin::UploadToCPAN
-
-If you want to make specific version module tarball:
-
-    $ git checkout v0.002
-    $ dzil build
-
 =head1 DESCRIPTION
 
 This does the L<Dist::Zilla::Role::VersionProvider> role. It finds the last
