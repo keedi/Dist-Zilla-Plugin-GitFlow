@@ -12,7 +12,28 @@ use Dist::Zilla 2.100880;    # Need mvp_multivalue_args in Plugin role
 
 In your F<dist.ini>:
 
-[@GitFlow]
+    [@GitFlow]
+
+When you want to release the module on the develop branch:
+
+    $ git flow release start 0.003
+    #
+    # edit and commit
+    #
+    $ dzil release
+    $ git flow release finish 0.003
+
+After finishing release, then upload your released module:
+
+    $ git checkout v0.003
+    $ dzil build
+    $ cpan-upload YourModule-0.003.tar.gz
+
+If you want to make specific version module tarball:
+
+    $ git checkout v0.002
+    $ dzil build
+
 
 =head1 DESCRIPTION
 
