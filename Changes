@@ -2,6 +2,10 @@ Release history for Dist-Zilla-Plugin-GitFlow
 
 {{ $NEXT }}
 
+0.007     2011-06-20 15:56:55 Asia/Seoul
+    - support bundle config
+    - update document
+
 0.006     2011-06-16 17:28:48 Asia/Seoul
     - fix module dependency
 
