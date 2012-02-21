@@ -1,8 +1,6 @@
 package Dist::Zilla::Plugin::GitFlow::NextVersion;
 # ABSTRACT: provide a version number by bumping the last git flow release tag
 
-use 5.010;
-
 use Dist::Zilla 4 ();
 use Git::Wrapper;
 use Version::Next ();

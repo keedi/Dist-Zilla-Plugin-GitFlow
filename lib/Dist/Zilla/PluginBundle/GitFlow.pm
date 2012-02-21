@@ -1,7 +1,6 @@
 package Dist::Zilla::PluginBundle::GitFlow;
 # ABSTRACT: all git-flow plugins in one go
 
-use 5.010;
 use Moose;
 use Class::MOP;
 
@@ -32,10 +31,8 @@ sub bundle_config {
     for my $name (@bundled_plugins) {
         my $class = "Dist::Zilla::Plugin::$name";
         my %payload;
-        given ($name) {
-            when ('Git::Commit') {
-                $payload{'commit_msg'} = 'Bump up to v%v%n%n%c';
-            }
+        if ($name eq 'Git::Commit') {
+            $payload{'commit_msg'} = 'Bump up to v%v%n%n%c';
         }
         foreach my $k (keys %$arg) {
             $payload{$k} = $arg->{$k} if $class->can($k);

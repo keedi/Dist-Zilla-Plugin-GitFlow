@@ -1,7 +1,6 @@
 package Dist::Zilla::Plugin::GitFlow::Init;
 # ABSTRACT: initialize git repository and git-flow setting on dzil new
 
-use 5.010;
 use Moose;
 
 our %transform = (
