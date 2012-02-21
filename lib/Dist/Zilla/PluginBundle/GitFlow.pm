@@ -1,7 +1,6 @@
 package Dist::Zilla::PluginBundle::GitFlow;
 # ABSTRACT: all git-flow plugins in one go
 
-use 5.010;
 use Moose;
 use Class::MOP;
 
