@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Plugin-GitFlow
 
 {{ $NEXT }}
+
+0.010     2012-02-21 21:35:12 Asia/Seoul
     - remove needless 5.010 pragma
 
 0.008     2011-06-20 16:03:48 Asia/Seoul
